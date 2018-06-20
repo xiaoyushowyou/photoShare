@@ -1,0 +1,137 @@
+<% include partials/header %>
+
+
+<header>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/semantic.min.css"></link>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+</header>
+
+                
+<div class = "container">
+    <div class = "row"> 
+        <h1 style = "text-align: center">Create a new photo information gallery</h1>
+        <div style = "width: 30%; margin: 25px auto;">
+            <form action = "/photos" method = "POST">
+                
+                <div class = "form-group">
+                    <label>Author Name</label>
+                    <input class="form-control" type = "text" name = "authorName" placeholder = "Jack"></input>
+                </div>
+        
+                <div class = "form-group">
+                    <label>Photo Name</label>
+                    <input class="form-control" type = "text" name = "name" placeholder = "Great View"></input>
+                </div>
+                
+                <div class = "form-group">
+                    <label>Photo URL</label>
+                    <input class="form-control" type = "text" name = "image" placeholder = "URL"></input>
+                </div>
+                
+                <div class = "form-group">
+                    <label>Description</label>
+                    <input class="form-control" type = "text" name = "description" placeholder = "description"></input>
+                </div>
+                
+                <div class="form-group">
+                    <label>Time</label>
+                    <input class="form-control" id="time" name ="time" type="time"></input>
+                </div>
+                
+                <div class="form-group">
+                    <label>Date</label>
+                    <input class="form-control" id="date" name ="date" type="date"></input>
+                </div>
+                
+                <div class = "form-group">
+                    <label for="location">Location</label>
+                    <input class="form-control" type="text" name="location" id="location" placeholder="Atlanta, GA">
+                </div>
+                
+                <div class="form-group">
+                    <label>System</label>
+                    <select class="form-control" name="system" id='system'>
+                      <option value="IOS">IOS</option>
+                      <option value="Andriod">Andriod</option>
+                      <option value="Others">Others</option>
+                    </select>
+                </div>
+                
+                <div class="form-group" id="filter_group">
+                    <label>Filter Type</label>
+                    <select class="form-control" name='filter_ios' id='filter'>
+                        <option value="orginal">original</option>"
+                        <option value="vivid">vivid</option>"
+                        <option value="vivid warm">vivid warm</option>"
+                        <option value="vivid ccold">vivid cold</option>"
+                        <option value="vivid">vivid</option>"
+                        <option value="others">others</option>"
+                    </select>
+                </div>
+                
+                <div class="form-group" id="filter_group_android">
+                    <label>Filter Type</label>
+                    <select class="form-control" name='filter_android' id='filter_android'>
+                        <option value="sharpen">sharpen</option>"
+                        <option value="blur">blur</option>"
+                        <option value="others">others</option>"
+                        
+                    </select>
+                </div>
+                
+                <div class="form-group" id="filter_group_others">
+                    <label>Filter Type (Others)</label>
+                    <input class="form-control" type="text" name="filter_others" id="filter_text" placeholder="filter_name">
+                </div>
+                
+                
+                
+                <script>
+                    $(document).ready(function() {
+                        $('#filter_group').show();
+                        $('#filter_group_android').hide();
+                        $('#filter_group_others').hide();
+                        
+                        $('#system').change(function () {
+                            if ($('#system option:selected').text() == "IOS" ){
+                                $('#filter_group').show();
+                                $('#filter_group_others').hide();
+                                $('#filter_group_android').hide();
+
+                            }
+                            else if ($('#system option:selected').text() == "Andriod")
+                            {
+                                $('#filter_group').hide();
+                                $('#filter_group_others').hide();
+                                $('#filter_group_android').show();
+                            }
+                            else { 
+                                $('#filter_group').hide();
+                                $('#filter_group_others').show();
+                                $('#filter_group_android').hide();
+                            }
+                        });
+                    });
+                </script>
+                
+                <div class="form-group">
+                    <label>flash</label>
+                    <select class="form-control" name="flash" id='flash'>
+                        <option value="On">On</option>
+                        <option value="Off">Off</option>
+                    </select>
+                </div>
+            
+                
+                <div class = "form-group">
+                    <button class = "btn btn-lg btn-primary btn-block">Submit</button>
+                </div>
+            </form>
+            <a href = "/photo">Back</a>
+        </div>
+    </div>
+</div>
+
+
+
+<% include partials/footer %>

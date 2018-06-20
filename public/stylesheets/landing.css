@@ -1,0 +1,77 @@
+body {
+    background-color: black;
+}
+
+#landing-header {
+  z-index: 1;
+  position: relative;
+  text-align: center;
+  padding-top: 40vh;
+}
+
+#landing-header h1 {
+  color: #fff;
+}
+
+.slideshow { 
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.slideshow li { 
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  opacity: 0;
+  z-index: 0;
+  animation: imageAnimation 50s linear infinite; 
+}
+
+.slideshow li:nth-child(1) { 
+  background-image: url(https://scontent-lax3-2.xx.fbcdn.net/v/t1.0-9/35686847_1776930889089677_3385182910767169536_n.jpg?_nc_cat=0&oh=f58bc3f0eef625454d8c321e537b62b5&oe=5BB28774);
+}
+.slideshow li:nth-child(2) { 
+  background-image: url(https://scontent-lax3-2.xx.fbcdn.net/v/t1.0-9/35763190_1776931222422977_4898922981528436736_n.jpg?_nc_cat=0&oh=7c03098f3c022f5b14e3e6145d8435cb&oe=5BB273DF);
+  animation-delay: 10s; 
+}
+.slideshow li:nth-child(3) { 
+  background-image: url(https://scontent-lax3-2.xx.fbcdn.net/v/t1.0-9/35744121_1776931279089638_1184586090867064832_n.jpg?_nc_cat=0&oh=b744ea8deb3fd8ba6b8e0fcc0825b004&oe=5BAD3167);
+  animation-delay: 20s; 
+}
+.slideshow li:nth-child(4) { 
+  background-image: url(https://scontent-lax3-2.xx.fbcdn.net/v/t1.0-9/35686912_1776914389091327_7426973721597837312_n.jpg?_nc_cat=0&oh=85b0d63f918314fe9506555d69850464&oe=5BA21979);
+  animation-delay: 30s; 
+}
+.slideshow li:nth-child(5) { 
+  background-image: url(https://scontent-lax3-2.xx.fbcdn.net/v/t1.0-9/35855866_1776931245756308_3505002864713924608_n.jpg?_nc_cat=0&oh=0367bdb638d3ef2c0d129a5caff83117&oe=5BAA596B);
+  animation-delay: 40s; 
+}
+
+@keyframes imageAnimation { 
+  0% { 
+    opacity: 0; 
+    animation-timing-function: ease-in;
+  }
+  10% {
+    opacity: 1;
+    animation-timing-function: ease-out;
+  }
+  20% {
+    opacity: 1
+  }
+  30% {
+    opacity: 0
+  }
+}

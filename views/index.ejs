@@ -1,0 +1,37 @@
+<% include partials/header.ejs %>
+
+<head>
+    <link rel="stylesheet" href="/stylesheets/index.css">
+</head>
+
+<div class = "container">
+    
+    <header class = "jumbotron">
+        <div class = container>
+        <h1>Welcome to Photo Share<i class="mobile icon"></i></h1>
+        <p>Record and Share Your Amazing Moment</p>
+        <p>
+            <a class="btn btn-primary btn-lg" href = "/photos/new">Add a New Photo</a>
+        </p>
+    </header>
+    
+    <!--<div class = "row text-center" style="display:flex; flex_wrap: wrap;" >-->
+    <div class = "row text-center" style = "display: flex; flex-wrap:wrap;" >
+        <% photos.forEach(function(photos) { %>
+            <div class="col-md-3 col-sm-6">
+                <div class = "thumbnail">
+                    <img src = "<%=photos.image%>" >
+                    <div class = "caption">
+                        <h4><%= photos.name %></h4>
+                    </div>
+                    <p>
+                        <a href="/photos/<%= photos._id %>" class = "btn btn-primary">More Info</a>
+                    </p>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+
+</div>
+
+<% include partials/footer.ejs %>

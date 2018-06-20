@@ -1,0 +1,91 @@
+<% include partials/header.ejs %>
+<head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/stylesheets/show.css">
+</head>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            
+            <p class="lead">Settings</p>
+                <p><i class="mobile icon"></i>System: <%= photo.system %></p>
+                <p><i class="camera retro icon"></i>Filter: <%= photo.filter %></p>
+                <p><i class="lightbulb outline icon"></i>Flash: <%= photo.flash %></p>
+            <hr>
+            <p class="lead">Time</p>
+                <p> <i class="calendar outline icon"></i>Date: <%= photo.date %> </p>
+                <p> <i class="clock icon"></i>Time: <%= photo.time %> </p>
+            <hr>
+            <p class="lead">Location</p>
+                <p><i class="map outline icon"></i><%= photo.location %></p>
+            <div id="map"></div>
+        </div>
+        
+        
+        
+        <div class="col-md-9">
+            <div class="thumbnail">
+                <img class="img-responsive" src="<%= photo.image %>">
+                <div class="caption-full">
+                    <h4 class="pull-right"><%= photo.authorName%></h4>
+                    <h4><%= photo.name%></h4>
+                    <p><%= photo.description %></p>
+                </div>
+            </div>
+            
+            <div class="well">
+                <div class="text-right">
+                    <a class="btn btn-success" href = "/photos/<%=photo._id%>/comments/new">Create New Comment</a>
+                </div>
+                <hr>
+                <% photo.comments.forEach(function(comment) { %>
+                    <div class = "row">
+                        <div class = "col-md-12">
+                            <b><%= comment.author%></b>
+                                <p>
+                                    <%= comment.text%>
+                                </p>
+                        </div>
+                    </div>
+                <%})%>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+  function initMap() {
+    var lat = <%= photo.lat %>;
+    var lng = <%= photo.lng %>;
+    console.log(lat);
+    // var lat = 36;
+    // var lng = -111;
+    var center = {lat: lat, lng: lng};
+    var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 8,
+        center: center,
+        scrollwheel: false
+    });
+    var contentString = `
+      <strong><%= photo.name %><br />
+      <%= photo.location %></strong>
+      <p><%= photo.description %></p>
+    `
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+    
+    var marker = new google.maps.Marker({
+        position: center,
+        map: map
+    });
+    marker.addListener('click', function() {
+      infowindow.open(map, marker);
+    });
+  }
+</script>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBfBj6uz7Kl7eymvh-lmn-V1CfhWQ_dJE&callback=initMap"></script>
+
+<% include partials/footer.ejs %>
